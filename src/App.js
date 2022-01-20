@@ -12,6 +12,11 @@ const AppContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
 `
+const DivProdutos = styled.div`
+ display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+`
 
 
 
@@ -27,6 +32,7 @@ class App extends React.Component {
           <Produto
               imgProduto={itens.imagemUrl}
               nomeProduto={itens.name}
+             
               valueProduto={itens.value}
           />
             
@@ -34,7 +40,24 @@ class App extends React.Component {
   })
     return(
      <AppContainer>
-      {listaDeProdutos}
+       <p>Quantidade de produtos: {listaDeProdutos.length}</p>
+
+
+      <DivProdutos>
+       {listaDeProdutos}
+      </DivProdutos>
+
+      <span>
+        <label>Ordenação: </label>
+        <select
+          // name=''
+          // value={}
+          // onChange={}
+        >
+          <option>Crescente</option>
+          <option>Decrescente</option>
+        </select>
+      </span>
      </AppContainer>
     )
   }

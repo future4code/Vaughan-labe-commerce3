@@ -17,6 +17,20 @@ const DivProdutos = styled.div`
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
 `
+const FiltroContainer = styled.div`
+display: flex;
+border: 1px solid black;
+padding: 40px;
+margin-top: 63px;
+height: 820px;
+width: 200px;
+`
+const Filtros = styled.div`
+display: flex;
+flex-direction: column;
+width: 180px;
+`
+
 const MainProdutos = styled.main`
   display: grid;
   justify-items: center;
@@ -25,39 +39,102 @@ const MainProdutos = styled.main`
 const MenuInfos = styled.div`
   display: flex;
   justify-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   width: 100%;
 `
-
-
-
 
 class App extends React.Component {
 
   state = {
     produtos: Prods,
-    order: 1
+    order: 1,
+    pesquisa: "",
+    minPrice: "",
+    maxPrice: "",
+  }
+
+
+  filtrarNome = (event) => {
+
+    this.setState({ pesquisa: event.target.value })
+  }
+
+  filtrarMin = (event) => {
+    this.setState({ minPrice: event.target.value })
+  }
+
+  filtrarMax = (event) => {
+    this.setState({ maxPrice: event.target.value })
   }
 
   updateOrder = (ev) => {
     this.setState({ order: ev.target.value })
   }
 
+
+
   render() {
-    const listaDeProdutos = this.state.produtos.map((itens) => {
-      return (
-        <Produto
-          imgProduto={itens.imagemUrl}
-          nomeProduto={itens.name}
-          valueProduto={itens.value}
-        />
-      )
-    })
+    const listaDeProdutos = this.state.produtos
+      .filter(prod => {
+        return prod.name.toLowerCase().includes(this.state.pesquisa.toLowerCase())
+      })
+      .filter(prod => {
+        return this.state.minPrice === "" || prod.value >= this.state.minPrice
+
+      })
+      .filter(prod => {
+        return this.state.maxPrice === "" || prod.value <= this.state.maxPrice
+
+      })
+      .sort((cresc,decre) =>{
+          switch (this.state.order){
+              default:
+                return this.state.order * (cresc.value - decre.value)
+          }
+      })
+      .map((itens) => {
+        return (
+          <Produto
+            key={itens.id}
+            imgProduto={itens.imagemUrl}
+            nomeProduto={itens.name}
+            valueProduto={itens.value}
+          />
+        )
+      })
     return (
       <AppContainer>
-        <h1>FILTROS</h1>
+        <FiltroContainer>
+          <Filtros>
+            <h3>Filtros</h3>
+            <p>Valor Minimo</p>
+            <input
+              type='number'
+              placeholder='Digite um valor'
+              value={this.state.minPrice}
+              onChange={this.filtrarMin}
+            />
+
+            <p>Valor Máximo</p>
+            <input
+              type='number'
+              placeholder='Digite um valor'
+              value={this.state.maxPrice}
+              onChange={this.filtrarMax}
+            />
+
+            <p>Busca por Nome</p>
+            <input
+              placeholder="Nome do Produto"
+              value={this.state.pesquisa}
+              onChange={this.filtrarNome}
+            />
+          </Filtros>
+        </FiltroContainer>
+
         <MainProdutos>
+          
           <MenuInfos>
             <p>Quantidade de produtos: {listaDeProdutos.length}</p>
             <span>

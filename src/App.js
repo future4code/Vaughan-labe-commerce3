@@ -4,6 +4,7 @@ import car from "./components/Carrinho"
 import styled from 'styled-components';
 import Produto from "./components/Produtos/Produto"
 import Prods from "./components/Produtos/Produtos.json"
+import Carrinho from './components/Carrinho';
 
 
 
@@ -35,14 +36,16 @@ class App extends React.Component {
              
               valueProduto={itens.value}
           />
+        
             
       )
+
   })
     return(
      <AppContainer>
        <p>Quantidade de produtos: {listaDeProdutos.length}</p>
 
-
+   <Carrinho/> 
       <DivProdutos>
        {listaDeProdutos}
       </DivProdutos>

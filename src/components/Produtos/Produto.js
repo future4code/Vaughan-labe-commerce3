@@ -14,21 +14,23 @@ const CardProdutos = styled.div`
     border: 1px solid black;
     width: 300px;
     align-items: center;
-
+    border-radius: 2%;
 `
 
 const ProdutosImg = styled.img`
 width: 100%;
 &:hover{
-    cursor: pointer;
+  
 }
 `
 const CardButton = styled.button`
     margin: 1px;
-
  &:hover{
     cursor: pointer;
 }
+`
+const ElementGreen = styled.h4`
+    color: green;
 
 `
 
@@ -42,7 +44,7 @@ class Produto extends React.Component {
                     <CardProdutos>
                         <ProdutosImg src={this.props.imgProduto} alt={"Imagem do produto"} />
                         <p>{this.props.nomeProduto}</p>
-                        <p>R$ {this.props.valueProduto}</p>
+                        <ElementGreen>R$ {this.props.valueProduto}</ElementGreen>
                         <CardButton>Adicionar ao carrinho</CardButton>
                     </CardProdutos>
             </ProdutosContainer>

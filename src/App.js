@@ -9,6 +9,8 @@ const AppContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
+  padding: 40px;
+  
 `
 const DivProdutos = styled.div`
  display: grid;
@@ -18,8 +20,13 @@ const DivProdutos = styled.div`
 const FiltroContainer = styled.div`
 border: 1px solid black;
 padding: 40px;
-height: 600px;
+height: 820px;
 width: 200px;
+`
+const Filtros = styled.div`
+display: flex;
+flex-direction: column;
+width: 180px;
 `
 
 class App extends React.Component {
@@ -34,42 +41,47 @@ class App extends React.Component {
 
   filtrarNome = (event) => {
 
-    this.setState({pesquisa: event.target.value})
+    this.setState({ pesquisa: event.target.value })
   }
 
   filtrarMin = (event) => {
-    this.setState({minPrice: event.target.value})
+    this.setState({ minPrice: event.target.value })
   }
 
   filtrarMax = (event) => {
-    this.setState({maxPrice: event.target.value})
+    this.setState({ maxPrice: event.target.value })
   }
 
 
   render() {
-    const listaDeProdutos = this.state.produtos.map((itens) => {
-      return (
-        <Produto
-          key = {itens.id}
-          imgProduto={itens.imagemUrl}
-          nomeProduto={itens.name}
-          valueProduto={itens.value} 
-        />
-      )
-    })
+    const listaDeProdutos = this.state.produtos
+      .filter(prod => {
+        return prod.name.toLowerCase().includes(this.state.pesquisa.toLowerCase())
+      })
+      .filter(prod => {
+        return this.state.minPrice === "" || prod.value >= this.state.minPrice
 
-    // this.state.produtos.filter((lista)=>{
+      })
+      .filter(prod => {
+        return this.state.maxPrice === "" || prod.value <= this.state.maxPrice
 
-    // return lista.name.toLowerCase().includes(this.state.pesquisa.toLowerCase())
-    // })
-
-    
+      })
+      .map((itens) => {
+        return (
+          <Produto
+            key={itens.id}
+            imgProduto={itens.imagemUrl}
+            nomeProduto={itens.name}
+            valueProduto={itens.value}
+          />
+        )
+      })
 
     return (
       <AppContainer>
         <FiltroContainer>
-        
-          <div>
+
+          <Filtros>
             <h3>Filtros</h3>
             <p>Valor Minimo</p>
             <input
@@ -78,10 +90,10 @@ class App extends React.Component {
               value={this.state.minPrice}
               onChange={this.filtrarMin}
             />
-            
-          </div>
 
-          <div>
+
+
+
             <p>Valor Máximo</p>
             <input
               type='number'
@@ -89,36 +101,23 @@ class App extends React.Component {
               value={this.state.maxPrice}
               onChange={this.filtrarMax}
             />
-            
-          </div>
 
-          <div>
-            <label>Busca por Nome</label>
+
+
+
+            <p>Busca por Nome</p>
             <input
-              placeholder= "Nome do Produto"
+              placeholder="Nome do Produto"
               value={this.state.pesquisa}
               onChange={this.filtrarNome}
             />
-          </div>
+          </Filtros>
 
-
-          <div>
-          {this.state.produtos
-          .filter(lista => {
-          return lista.state.name.toLowerCase().includes(this.state.pesquisa.toLowerCase())
-          })
-          .filter(lista => {
-          return lista.state.minPrice === "" || lista.value >= this.state.minPrice
-          })
-          .filter(lista => {
-            return lista.state.maxPrice === "" || lista.value <= this.state.maxPrice
-            })
-          }
-          </div>
 
         </FiltroContainer>
-        <p>Quantidade de produtos: {listaDeProdutos.length}</p>
-
+        <div>
+          {<p>Quantidade de produtos: {listaDeProdutos.length}</p>}
+        </div>
         <DivProdutos>
           {listaDeProdutos}
         </DivProdutos>

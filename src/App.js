@@ -1,9 +1,7 @@
 import React from 'react';
-import './App.css';
-import car from "./components/Carrinho"
 import styled from 'styled-components';
-import Produto from "./components/Produtos/Produto"
-import Prods from "./components/Produtos/Produtos.json"
+import Produto from "./components/Produtos/Produto";
+import Prods from "./components/Produtos/Produtos.json";
 
 
 
@@ -11,6 +9,8 @@ const AppContainer = styled.body`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
+  padding: 40px;
+  
 `
 const DivProdutos = styled.div`
  display: grid;
@@ -18,10 +18,15 @@ const DivProdutos = styled.div`
   justify-items: center;
 `
 const FiltroContainer = styled.div`
+
 display: flex;
 border: 1px solid black;
 padding: 40px;
 margin-top: 63px;
+
+border: 1px solid black;
+padding: 40px;
+
 height: 820px;
 width: 200px;
 `
@@ -30,6 +35,7 @@ display: flex;
 flex-direction: column;
 width: 180px;
 `
+
 
 const MainProdutos = styled.main`
   display: grid;
@@ -44,11 +50,15 @@ const MenuInfos = styled.div`
   width: 100%;
 `
 
+
+
 class App extends React.Component {
 
   state = {
     produtos: Prods,
+
     order: 1,
+
     pesquisa: "",
     minPrice: "",
     maxPrice: "",
@@ -68,9 +78,11 @@ class App extends React.Component {
     this.setState({ maxPrice: event.target.value })
   }
 
+
   updateOrder = (ev) => {
     this.setState({ order: ev.target.value })
   }
+
 
 
 
@@ -87,6 +99,7 @@ class App extends React.Component {
         return this.state.maxPrice === "" || prod.value <= this.state.maxPrice
 
       })
+
       .sort((cresc,decre) =>{
           switch (this.state.order){
               default:
@@ -103,9 +116,17 @@ class App extends React.Component {
           />
         )
       })
+
     return (
       <AppContainer>
         <FiltroContainer>
+
+
+    return (
+      <AppContainer>
+        <FiltroContainer>
+
+
           <Filtros>
             <h3>Filtros</h3>
             <p>Valor Minimo</p>
@@ -116,6 +137,11 @@ class App extends React.Component {
               onChange={this.filtrarMin}
             />
 
+
+
+
+
+
             <p>Valor Máximo</p>
             <input
               type='number'
@@ -124,6 +150,12 @@ class App extends React.Component {
               onChange={this.filtrarMax}
             />
 
+
+
+
+
+
+
             <p>Busca por Nome</p>
             <input
               placeholder="Nome do Produto"
@@ -131,6 +163,7 @@ class App extends React.Component {
               onChange={this.filtrarNome}
             />
           </Filtros>
+
         </FiltroContainer>
 
         <MainProdutos>
@@ -157,7 +190,33 @@ class App extends React.Component {
         <h1>CARRINHO</h1>
       </AppContainer>
     )
+=======
+
+
+        </FiltroContainer>
+        <div>
+          {<p>Quantidade de produtos: {listaDeProdutos.length}</p>}
+        </div>
+        <DivProdutos>
+          {listaDeProdutos}
+        </DivProdutos>
+
+        <span>
+          <label>Ordenação: </label>
+          <select
+          // name=''
+          // value={}
+          // onChange={}
+          >
+            <option>Crescente</option>
+            <option>Decrescente</option>
+          </select>
+        </span>
+      </AppContainer>
+
+    );
   }
+
 }
 
 export default App;

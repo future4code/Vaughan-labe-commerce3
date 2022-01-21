@@ -1,20 +1,11 @@
 import React from "react"
 import produtos from "./Produtos/Produtos.json"
 
-import Produto from "./Produtos/Produto"
-
 
 class Carrinho extends React.Component{
     state = {
         produto: produtos,
-    //     {
-    //         id: 1,
-    //         name: "Camisa Astronauta",
-    //         value: 10.00,
-    //         imagemUrl: "https://www.usecamisetas.com/media/product/aed/camiseta-astronauta-9d2.jpg"
         
-    // },
-        listaProdutos: []
     }
 
     adicionandoProduto = (id) =>{
@@ -41,7 +32,8 @@ class Carrinho extends React.Component{
     render(){
         return(
             <>
-              <Produto/>
+           
+              
             </>
         )
     }

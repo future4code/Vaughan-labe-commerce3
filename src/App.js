@@ -24,7 +24,24 @@ const DivProdutos = styled.div`
 class App extends React.Component {
 
   state = {
-    produtos: Prods
+    produtos: Prods,
+    listaProdutos: [
+      {
+          "id": 1,
+          "name": "Camisa Astronauta",
+          "value": 10.00,
+          "imagemUrl": "https://www.usecamisetas.com/media/product/aed/camiseta-astronauta-9d2.jpg",
+          quantidade: 1
+      },
+      {
+          "id": 1,
+          "name": "Camisa Astronauta",
+          "value": 10.00,
+          "imagemUrl": "https://www.usecamisetas.com/media/product/aed/camiseta-astronauta-9d2.jpg",
+          quantidade: 2
+      }
+      
+  ]
   }
 
   render(){
@@ -36,8 +53,9 @@ class App extends React.Component {
              
               valueProduto={itens.value}
           />
-   
+        
       )
+
 
   })
     return(
@@ -45,7 +63,7 @@ class App extends React.Component {
         <p>Quantidade de produtos: {listaDeProdutos.length}</p>
 
    <Carrinho
-
+      
    /> 
       <DivProdutos>
        {listaDeProdutos}

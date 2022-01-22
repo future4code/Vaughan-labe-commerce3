@@ -5,7 +5,7 @@ const Borda = styled.div`
    
     display: grid;
     grid-auto-flow: column;
-    gap: 2rem;
+    gap: 1rem;
     
    
 `
@@ -15,8 +15,8 @@ class ItemCar extends React.Component{
     render(){
         return(
        <Borda>
-       <p>1X</p>
-       <p>Produto</p>
+       <p>{this.props.itemCar.quantidade}X</p>
+       <p>{this.props.itemCar.name}</p>
        <button>Remover</button>
        </Borda>
         

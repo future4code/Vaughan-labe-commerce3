@@ -16,15 +16,25 @@ const Chocolate = styled.div`
 
  class Carrinho extends React.Component{
 
+    valueTotal = () =>{
+        let valorTotal = 0
+        for (let product of this.props.listaDeProdutos){
+            valorTotal += product.value * product.quantidade;
+        }
+        return valorTotal
+    }
+
     render(){
         return (
             <Chocolate>
+                
                 <h3>Carrinho:</h3>
-                <ItemCar/>
-                <ItemCar/>
-                <ItemCar/>
-                <ItemCar/>
-                <p>Valor Total: R$100,00</p>
+                {this.props.listaDeProdutos.map((product)=>{
+                    return  <ItemCar itemCar={product }/>
+                })}
+              
+               
+                <p>Valor Total: R${this.valueTotal()},00</p>
             </Chocolate>
            
               

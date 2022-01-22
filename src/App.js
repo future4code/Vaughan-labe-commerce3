@@ -41,18 +41,18 @@ class App extends React.Component {
 
     listaProdutos: [
       {
-          "id": 1,
-          "name": "Camisa Astronauta",
-          "value": 10.00,
-          "imagemUrl": "https://www.usecamisetas.com/media/product/aed/camiseta-astronauta-9d2.jpg",
+          id: 1,
+          name: "Camisa Astronauta",
+          value: 10.00,
+          imagemUrl: "https://www.usecamisetas.com/media/product/aed/camiseta-astronauta-9d2.jpg",
           quantidade: 1
       },
       {
-         "id": 3,
-         "name": "Camiseta falling Astronauta",
-         "value": 10,
-         "imagemUrl": "https://www.usecamisetas.com/media/product/ce4/camiseta-falling-astronaut-27a.jpg",
-         quantidade: 2
+         id: 2,
+         name: "Camiseta falling Astronauta",
+         value: 25,
+         imagemUrl: "https://www.usecamisetas.com/media/product/ce4/camiseta-falling-astronaut-27a.jpg",
+         quantidade: 1
   }
 
       
@@ -85,21 +85,24 @@ class App extends React.Component {
     if (produtoCar) {
       const novoProdutoInCar = this.state.listaProdutos.map(product =>{
          if (productId === product.id) {
-           return{
+           return({
              ...product,
              quantidade: product.quantidade + 1
-           }
+           })
 
-         }
+         } 
          return product
       })
-      this.setState({listaDeProdutos: novoProdutoInCar})
+      this.setState({listaProdutos: novoProdutoInCar})
+     
     }else{
       const produtoAdd = this.state.produtos.find(product => productId === product.id)
       const novoProdutoInCart = [...this.state.listaProdutos, {...produtoAdd, quantidade: 1}] 
       
-      this.setState({listaDeProdutos: novoProdutoInCart})
+      this.setState({listaProdutos: novoProdutoInCart})
+     
     }
+   
   } 
 
 
@@ -123,7 +126,7 @@ class App extends React.Component {
             imgProduto={itens.imagemUrl}
             nomeProduto={itens.name}
             valueProduto={itens.value}
-           prod={itens.id}
+           
            addProdutoInCar = {this.addProdutoInCar}
           />
 

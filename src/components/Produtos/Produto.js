@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-import myProd from "./Produtos.json"
 
 
 const ProdutosContainer = styled.div`
@@ -35,16 +34,20 @@ const CardButton = styled.button`
 
 
 class Produto extends React.Component {
-    render() {
     
+    render() {
+        
         return (
+            
             <ProdutosContainer>
           
                     <CardProdutos>
                         <ProdutosImg src={this.props.imgProduto} alt={"Imagem do produto"} />
                         <p>{this.props.nomeProduto}</p>
                         <p>R$ {this.props.valueProduto}</p>
-                        <CardButton onClick={() =>this.props.addProdutoInCar(this.props.id)}>
+                        <CardButton 
+                       
+                        onClick={() =>this.props.addProdutoInCar(2)}>
                             Adicionar ao carrinho
                         </CardButton>
                         

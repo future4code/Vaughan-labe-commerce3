@@ -34,8 +34,11 @@ const CardButton = styled.button`
 
 
 class Produto extends React.Component {
+
+  
     
     render() {
+     let ak = this.props.eita
         
         return (
             
@@ -47,7 +50,7 @@ class Produto extends React.Component {
                         <p>R$ {this.props.valueProduto}</p>
                         <CardButton 
                        
-                        onClick={() =>this.props.addProdutoInCar(2)}>
+                        onClick={() =>this.props.addProdutoInCar(ak)}>
                             Adicionar ao carrinho
                         </CardButton>
                         

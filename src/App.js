@@ -4,7 +4,7 @@ import './App.css';
 import styled from 'styled-components';
 import Carrinho from './components/Carrinho';
 import Produto from "./components/Produtos/Produto";
-import Prods from "./components/Produtos/Produtos.json";
+
 
 
 
@@ -37,7 +37,44 @@ width: 180px;
 class App extends React.Component {
 
   state = {
-    produtos: Prods,
+    produtos:  [
+      {
+        "id": 1,
+        "name": "Camisa Astronauta",
+        "value": 10.00,
+        "imagemUrl": "https://www.usecamisetas.com/media/product/aed/camiseta-astronauta-9d2.jpg"
+      },
+      {
+        "id": 2,
+        "name": "camiseta astronauta in-love",
+        "value": 25.00,
+        "imagemUrl": "https://www.usecamisetas.com/media/product/69e/camiseta-astronauta-in-love-c8e.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Camiseta falling Astronauta",
+        "value": 39.90,
+        "imagemUrl": "https://www.usecamisetas.com/media/product/ce4/camiseta-falling-astronaut-27a.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Camiseta gato abduzido",
+        "value": 44.90,
+        "imagemUrl": "https://www.usecamisetas.com/media/product/4a7/camiseta-gato-abduzido-441.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Camisa pequeno principe",
+        "value": 59.99,
+        "imagemUrl": "https://www.usecamisetas.com/media/product/beb/camiseta-pequeno-principe-b15.jpg"
+      },
+      {
+        "id": 6,
+        "name": "camiseta trippy astronauta",
+        "value": 86.75,
+        "imagemUrl": "https://www.usecamisetas.com/media/product/ccd/camiseta-trippy-astronauta-2b9.jpg"
+      }
+      ],
 
     listaProdutos: [
       {
@@ -122,18 +159,21 @@ class App extends React.Component {
       .map((itens) => {
         return (
           <Produto
-            key={itens.id}
+           key={itens.id}
             imgProduto={itens.imagemUrl}
             nomeProduto={itens.name}
             valueProduto={itens.value}
-           
+           eita={itens.id}
            addProdutoInCar = {this.addProdutoInCar}
           />
 
-          
             
       )
+      
   })
+   
+    
+     
    
       
   
@@ -141,7 +181,7 @@ class App extends React.Component {
 
     return (
       <AppContainer>
-       
+    
         <FiltroContainer>
         <p>Quantidade de produtos: {listaDeProdutos.length}</p>
           <Filtros>

@@ -9,6 +9,7 @@ import Prods from "./components/Produtos/Produtos.json";
 
 
 
+
 const AppContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -47,12 +48,13 @@ class App extends React.Component {
           quantidade: 1
       },
       {
-          "id": 1,
-          "name": "Camisa Astronauta",
-          "value": 10.00,
-          "imagemUrl": "https://www.usecamisetas.com/media/product/aed/camiseta-astronauta-9d2.jpg",
-          quantidade: 2
-      }
+         "id": 3,
+         "name": "Camiseta falling Astronauta",
+         "value": 10,
+         "imagemUrl": "https://www.usecamisetas.com/media/product/ce4/camiseta-falling-astronaut-27a.jpg",
+         quantidade: 2
+  }
+
       
   ],
 
@@ -76,6 +78,30 @@ class App extends React.Component {
     this.setState({ maxPrice: event.target.value })
   }
 
+  addProdutoInCar = (productId) => {
+    
+    const produtoCar = this.state.listaProdutos.find(product => productId === product.id)
+
+    if (produtoCar) {
+      const novoProdutoInCar = this.state.listaProdutos.map(product =>{
+         if (productId === product.id) {
+           return{
+             ...product,
+             quantidade: product.quantidade + 1
+           }
+
+         }
+         return product
+      })
+      this.setState({listaDeProdutos: novoProdutoInCar})
+    }else{
+      const produtoAdd = this.state.produtos.find(product => productId === product.id)
+      const novoProdutoInCart = [...this.state.listaProdutos, {...produtoAdd, quantidade: 1}] 
+      
+      this.setState({listaDeProdutos: novoProdutoInCart})
+    }
+  } 
+
 
   render() {
     const listaDeProdutos = this.state.produtos
@@ -97,6 +123,8 @@ class App extends React.Component {
             imgProduto={itens.imagemUrl}
             nomeProduto={itens.name}
             valueProduto={itens.value}
+           prod={itens.id}
+           addProdutoInCar = {this.addProdutoInCar}
           />
 
           
@@ -104,14 +132,15 @@ class App extends React.Component {
       )
   })
    
-
+      
   
-
+   
 
     return (
       <AppContainer>
+       
         <FiltroContainer>
-
+        <p>Quantidade de produtos: {listaDeProdutos.length}</p>
           <Filtros>
             <h3>Filtros</h3>
             <p>Valor Minimo</p>
@@ -138,16 +167,17 @@ class App extends React.Component {
               onChange={this.filtrarNome}
             />
           </Filtros>
-
-
+         
+         
+        
         </FiltroContainer>
-        <div>
-          {<p>Quantidade de produtos: {listaDeProdutos.length}</p>}
-        </div>
         <DivProdutos>
           {listaDeProdutos}
         </DivProdutos>
-
+       
+        <Carrinho
+          listaDeProdutos={this.state.listaProdutos}
+        />
         <span>
           <label>Ordenação: </label>
           <select
@@ -159,7 +189,10 @@ class App extends React.Component {
             <option>Decrescente</option>
           </select>
         </span>
+        
+       
       </AppContainer>
+      
 
     );
   }

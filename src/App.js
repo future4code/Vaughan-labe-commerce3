@@ -1,12 +1,8 @@
 import React from 'react';
 
 import './App.css';
-
 import styled from 'styled-components';
-
 import Carrinho from './components/Carrinho';
-
-import styled from 'styled-components';
 import Produto from "./components/Produtos/Produto";
 import Prods from "./components/Produtos/Produtos.json";
 
@@ -58,7 +54,7 @@ class App extends React.Component {
           quantidade: 2
       }
       
-  ]
+  ],
 
     pesquisa: "",
     minPrice: "",
@@ -102,37 +98,15 @@ class App extends React.Component {
             nomeProduto={itens.name}
             valueProduto={itens.value}
           />
-<<<<<<< HEAD
-<<<<<<< HEAD
+
           
             
       )
   })
-    return(
-     <AppContainer>
-       <p>Quantidade de produtos: {listaDeProdutos.length}</p>
-=======
-=======
+   
 
-        
-      )
+  
 
-
-  })
-    return(
-      <AppContainer>
-        <p>Quantidade de produtos: {listaDeProdutos.length}</p>
-
-   <Carrinho
-      
-   /> 
-      <DivProdutos>
-       {listaDeProdutos}
-      </DivProdutos>
-
->>>>>>> 737b2632ce80ed341ad9ea83b8dd0d599d0a35c6
-        )
-      })
 
     return (
       <AppContainer>
@@ -147,9 +121,6 @@ class App extends React.Component {
               value={this.state.minPrice}
               onChange={this.filtrarMin}
             />
->>>>>>> 389019b7e744e0a819ec43915913681b3a93bdd1
-
-
 
 
             <p>Valor Máximo</p>
@@ -159,9 +130,6 @@ class App extends React.Component {
               value={this.state.maxPrice}
               onChange={this.filtrarMax}
             />
-
-
-
 
             <p>Busca por Nome</p>
             <input

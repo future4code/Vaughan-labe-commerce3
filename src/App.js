@@ -1,7 +1,15 @@
 import React from 'react';
+
+import './App.css';
+
+import styled from 'styled-components';
+
+import Carrinho from './components/Carrinho';
+
 import styled from 'styled-components';
 import Produto from "./components/Produtos/Produto";
 import Prods from "./components/Produtos/Produtos.json";
+
 
 
 
@@ -33,6 +41,25 @@ class App extends React.Component {
 
   state = {
     produtos: Prods,
+
+    listaProdutos: [
+      {
+          "id": 1,
+          "name": "Camisa Astronauta",
+          "value": 10.00,
+          "imagemUrl": "https://www.usecamisetas.com/media/product/aed/camiseta-astronauta-9d2.jpg",
+          quantidade: 1
+      },
+      {
+          "id": 1,
+          "name": "Camisa Astronauta",
+          "value": 10.00,
+          "imagemUrl": "https://www.usecamisetas.com/media/product/aed/camiseta-astronauta-9d2.jpg",
+          quantidade: 2
+      }
+      
+  ]
+
     pesquisa: "",
     minPrice: "",
     maxPrice: "",
@@ -46,6 +73,7 @@ class App extends React.Component {
 
   filtrarMin = (event) => {
     this.setState({ minPrice: event.target.value })
+
   }
 
   filtrarMax = (event) => {
@@ -75,6 +103,7 @@ class App extends React.Component {
             valueProduto={itens.value}
           />
 <<<<<<< HEAD
+<<<<<<< HEAD
           
             
       )
@@ -83,6 +112,25 @@ class App extends React.Component {
      <AppContainer>
        <p>Quantidade de produtos: {listaDeProdutos.length}</p>
 =======
+=======
+
+        
+      )
+
+
+  })
+    return(
+      <AppContainer>
+        <p>Quantidade de produtos: {listaDeProdutos.length}</p>
+
+   <Carrinho
+      
+   /> 
+      <DivProdutos>
+       {listaDeProdutos}
+      </DivProdutos>
+
+>>>>>>> 737b2632ce80ed341ad9ea83b8dd0d599d0a35c6
         )
       })
 

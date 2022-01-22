@@ -36,7 +36,7 @@ const CardButton = styled.button`
 
 class Produto extends React.Component {
     render() {
-     const prodi = this.props.prod
+    
         return (
             <ProdutosContainer>
           
@@ -44,7 +44,7 @@ class Produto extends React.Component {
                         <ProdutosImg src={this.props.imgProduto} alt={"Imagem do produto"} />
                         <p>{this.props.nomeProduto}</p>
                         <p>R$ {this.props.valueProduto}</p>
-                        <CardButton onClick={() =>this.props.addProdutoInCar(prodi)}>
+                        <CardButton onClick={() =>this.props.addProdutoInCar(this.props.id)}>
                             Adicionar ao carrinho
                         </CardButton>
                         

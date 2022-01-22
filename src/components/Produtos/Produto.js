@@ -43,7 +43,7 @@ class Produto extends React.Component {
                         <ProdutosImg src={this.props.imgProduto} alt={"Imagem do produto"} />
                         <p>{this.props.nomeProduto}</p>
                         <p>R$ {this.props.valueProduto}</p>
-                        <CardButton>Adicionar ao carrinho</CardButton>
+                        <CardButton >Adicionar ao carrinho</CardButton>
                     </CardProdutos>
             </ProdutosContainer>
         )

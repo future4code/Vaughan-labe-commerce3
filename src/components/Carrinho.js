@@ -1,41 +1,35 @@
 import React from "react"
-import produtos from "./Produtos/Produtos.json"
+
+import ItemCar from "./ItemCar"
+import styled from "styled-components"
 
 
-class Carrinho extends React.Component{
-    state = {
-        produto: produtos,
-        
-    }
+const Chocolate = styled.div`
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    gap: 1rem;
+    align-items: center;
 
-    adicionandoProduto = (id) =>{
-        const adicionarItem = this.state.produto.map((id)=>{
-            if(id ){
-                return
-            }
-        })
-      
+`
 
-        // const addProd = {
-        //     id: 2,
-        //     name: "Sei la",
-        //     value: 100.00,
-        //     imagemUrl: "https://www.usecamisetas.com/media/product/aed/camiseta-astronauta-9d2.jpg"
-            
-        // }
-        // const addCarrinho = [...this.state.produto, addProd]
-        // this.setState({produtos : addProd})
-    }
 
-    
+ class Carrinho extends React.Component{
 
     render(){
-        return(
-            <>
+        return (
+            <Chocolate>
+                <h3>Carrinho:</h3>
+                <ItemCar/>
+                <ItemCar/>
+                <ItemCar/>
+                <ItemCar/>
+                <p>Valor Total: R$100,00</p>
+            </Chocolate>
            
               
-            </>
-        )
+          
+          )
     }
 }
 export default Carrinho

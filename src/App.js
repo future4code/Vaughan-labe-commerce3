@@ -104,14 +104,15 @@ class App extends React.Component {
       )
   })
    
-
+      
   
-
+   
 
     return (
       <AppContainer>
+       
         <FiltroContainer>
-
+        <p>Quantidade de produtos: {listaDeProdutos.length}</p>
           <Filtros>
             <h3>Filtros</h3>
             <p>Valor Minimo</p>
@@ -138,16 +139,15 @@ class App extends React.Component {
               onChange={this.filtrarNome}
             />
           </Filtros>
-
-
+         
+         
+        
         </FiltroContainer>
-        <div>
-          {<p>Quantidade de produtos: {listaDeProdutos.length}</p>}
-        </div>
         <DivProdutos>
           {listaDeProdutos}
         </DivProdutos>
-
+       
+        <Carrinho/>
         <span>
           <label>Ordenação: </label>
           <select
@@ -159,7 +159,10 @@ class App extends React.Component {
             <option>Decrescente</option>
           </select>
         </span>
+        
+       
       </AppContainer>
+      
 
     );
   }

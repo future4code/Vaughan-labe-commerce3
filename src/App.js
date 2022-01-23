@@ -142,6 +142,20 @@ class App extends React.Component {
    
   } 
 
+  removeProduto = (productId) =>{
+    const removendo = this.state.listaProdutos.map((product) =>{
+      if(product.id === productId){
+        return {
+          ... product,
+          quantidade: product.quantidade - 1
+        }
+      }
+      return product
+    }).filter((product) => product.quantidade > 0)
+    this.setState({listaProdutos: removendo})
+
+  }
+
 
   render() {
     const listaDeProdutos = this.state.produtos
@@ -220,6 +234,8 @@ class App extends React.Component {
        
         <Carrinho
           listaDeProdutos={this.state.listaProdutos}
+          removeProduto ={this.removeProduto}
+       
         />
         <span>
           <label>Ordenação: </label>

@@ -13,11 +13,12 @@ const Borda = styled.div`
 
 class ItemCar extends React.Component{
     render(){
+        
         return(
        <Borda>
        <p>{this.props.itemCar.quantidade}X</p>
        <p>{this.props.itemCar.name}</p>
-       <button>Remover</button>
+       <button onClick={() => this.props.remove(this.props.itemCar.id)}>Remover</button>
        </Borda>
         
             

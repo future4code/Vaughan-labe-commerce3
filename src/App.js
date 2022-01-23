@@ -10,7 +10,7 @@ import Produto from "./components/Produtos/Produto";
 
 
 
-const AppContainer = styled.div`
+const AppContainer = styled.body`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
@@ -23,8 +23,15 @@ const DivProdutos = styled.div`
   justify-items: center;
 `
 const FiltroContainer = styled.div`
+
+display: flex;
 border: 1px solid black;
 padding: 40px;
+margin-top: 63px;
+
+border: 1px solid black;
+padding: 40px;
+
 height: 820px;
 width: 200px;
 `
@@ -34,9 +41,27 @@ flex-direction: column;
 width: 180px;
 `
 
+
+const MainProdutos = styled.main`
+  display: grid;
+  justify-items: center;
+
+`
+const MenuInfos = styled.div`
+  display: flex;
+  justify-items: center;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+`
+
+
+
 class App extends React.Component {
 
   state = {
+
+    order: 1,
     produtos:  [
       {
         "id": 1,
@@ -94,6 +119,7 @@ class App extends React.Component {
 
       
   ],
+
 
     pesquisa: "",
     minPrice: "",
@@ -157,6 +183,13 @@ class App extends React.Component {
   }
 
 
+  updateOrder = (ev) => {
+    this.setState({ order: ev.target.value })
+  }
+
+
+
+
   render() {
     const listaDeProdutos = this.state.produtos
       .filter(prod => {
@@ -169,6 +202,13 @@ class App extends React.Component {
       .filter(prod => {
         return this.state.maxPrice === "" || prod.value <= this.state.maxPrice
 
+      })
+
+      .sort((cresc,decre) =>{
+          switch (this.state.order){
+              default:
+                return this.state.order * (cresc.value - decre.value)
+          }
       })
       .map((itens) => {
         return (
@@ -193,11 +233,17 @@ class App extends React.Component {
   
    
 
+   
+
+
     return (
       <AppContainer>
-    
         <FiltroContainer>
+
+
+
         <p>Quantidade de produtos: {listaDeProdutos.length}</p>
+
           <Filtros>
             <h3>Filtros</h3>
             <p>Valor Minimo</p>
@@ -209,6 +255,7 @@ class App extends React.Component {
             />
 
 
+
             <p>Valor Máximo</p>
             <input
               type='number'
@@ -217,6 +264,8 @@ class App extends React.Component {
               onChange={this.filtrarMax}
             />
 
+
+
             <p>Busca por Nome</p>
             <input
               placeholder="Nome do Produto"
@@ -224,31 +273,47 @@ class App extends React.Component {
               onChange={this.filtrarNome}
             />
           </Filtros>
-         
-         
-        
+
+
         </FiltroContainer>
-        <DivProdutos>
-          {listaDeProdutos}
-        </DivProdutos>
+
+        <MainProdutos>
+          
+          <MenuInfos>
+            <p>Quantidade de produtos: {listaDeProdutos.length}</p>
+            <span>
+              <label>Ordenação: </label>
+              <select
+                name='order'
+                value={this.state.order}
+                onChange={this.updateOrder}>
+                <option value={1}>Crescente</option>
+                <option value={-1}>Decrescente</option>
+              </select>
+            </span>
+          </MenuInfos>
+
+          <DivProdutos>
+            {listaDeProdutos}
+          </DivProdutos>
+
+        </MainProdutos>
        
         <Carrinho
           listaDeProdutos={this.state.listaProdutos}
           removeProduto ={this.removeProduto}
        
         />
-        <span>
-          <label>Ordenação: </label>
-          <select
-          // name=''
-          // value={}
-          // onChange={}
-          >
-            <option>Crescente</option>
-            <option>Decrescente</option>
-          </select>
-        </span>
-        
+      </AppContainer>
+    )
+
+         
+        </FiltroContainer>
+        <DivProdutos>
+          {listaDeProdutos}
+        </DivProdutos>
+       
+       
        
       </AppContainer>
       

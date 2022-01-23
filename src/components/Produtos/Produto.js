@@ -36,16 +36,31 @@ const ElementGreen = styled.h4`
 
 
 class Produto extends React.Component {
-    render() {
 
+  
+    
+    render() {
+     let ak = this.props.eita
+        
         return (
+            
             <ProdutosContainer>
           
                     <CardProdutos>
                         <ProdutosImg src={this.props.imgProduto} alt={"Imagem do produto"} />
                         <p>{this.props.nomeProduto}</p>
+
                         <ElementGreen>R$ {this.props.valueProduto}</ElementGreen>
-                        <CardButton>Adicionar ao carrinho</CardButton>
+                       
+
+                        <p>R$ {this.props.valueProduto}</p>
+                        <CardButton 
+                       
+                        onClick={() =>this.props.addProdutoInCar(ak)}>
+                            Adicionar ao carrinho
+                        </CardButton>
+                        
+
                     </CardProdutos>
             </ProdutosContainer>
         )

@@ -21,6 +21,7 @@ const DivProdutos = styled.div`
  display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
+  
 `
 const FiltroContainer = styled.div`
 border: 1px solid black;

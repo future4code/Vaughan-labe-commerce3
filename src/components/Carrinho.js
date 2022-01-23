@@ -30,7 +30,7 @@ const Chocolate = styled.div`
                 
                 <h3>Carrinho:</h3>
                 {this.props.listaDeProdutos.map((product)=>{
-                    return  <ItemCar itemCar={product }/>
+                    return  <ItemCar itemCar={product } remove={this.props.removeProduto} />
                 })}
               
                

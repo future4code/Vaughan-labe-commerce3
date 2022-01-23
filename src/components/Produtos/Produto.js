@@ -53,7 +53,7 @@ class Produto extends React.Component {
                         <ElementGreen>R$ {this.props.valueProduto}</ElementGreen>
                        
 
-                        <p>R$ {this.props.valueProduto}</p>
+                        
                         <CardButton 
                        
                         onClick={() =>this.props.addProdutoInCar(ak)}>
